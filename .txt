@@ -1,0 +1,10 @@
+PATH_THUMBNAIL=https://res.cloudinary.com/djqbcca6l/image/upload/v1653454446/
+PATH_ATTACHE=https://res.cloudinary.com/djqbcca6l/video/upload/v1653454448/
+TOKEN_KEY=bebasisiapasaja
+CLOUDINARY_NAME=djqbcca6l
+CLOUDINARY_API_SECRET=kFMXE2fG1hWOArknETv9y1ix9wA
+CLOUDINARY_API_KEY=232731995949164
+MIDTRANS_CLIENT_KEY=SB-Mid-client-EE8tiwTmSuf6XKSV
+MIDTRANS_SERVER_KEY=SB-Mid-server-cbknJjNdhvdvwtvHcgUe85AO
+SYSTEM_EMAIL=testdumbways@gmail.com
+SYSTEM_PASSWORD=test2022
