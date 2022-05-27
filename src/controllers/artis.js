@@ -1,46 +1,7 @@
 const { artis } = require('../../models')
 
-// const Joi = require('joi')
-
 exports.addArtis = async (req, res) => {
     try {
-        //     const schema = Joi.object({
-        //         name: Joi.string().min(4).required(),
-        //         old: Joi.number().min(1).required(),
-        //         type: Joi.string().min(3).required(),
-        //         startCareer: Joi.string().min(4).required(),
-        //     })
-
-        //     const { error } = schema.validate(req.body)
-        //     if (error) {
-        //         return res.status(400).send({
-        //             message: error.details[0].message
-        //         })
-        //     }
-
-        //     const newArtist = await artis.create({
-        //         name: req.body.name,
-        //         old: req.body.old,
-        //         type: req.body.type,
-        //         startCareer: req.body.startCareer
-        //     })
-
-        //     res.status(200).send({
-        //         status: 'success',
-        //         data: {
-        //             name: newArtist.name,
-        //             old: newArtist.old,
-        //             type: newArtist.type,
-        //             startCareer: newArtist.startCareer
-        //         }
-        //     })
-        // } catch (error) {
-        //     console.log(error);
-        //     res.status(500).send({
-        //         status: 'failed',
-        //         message: 'server error'
-        //     })
-        // }
         const { body } = req
 
         const artisData = await artis.create(body)
@@ -89,9 +50,6 @@ exports.getArtis = async (req, res) => {
         const { id } = req.params
         const data = await artis.findOne({
             where: { id },
-            // attributes: {
-            //     exclude: ['createdAt', 'updatedAt']
-            // }
         })
         res.status(200).send({
             status: 'success',

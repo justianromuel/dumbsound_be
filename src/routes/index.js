@@ -26,14 +26,14 @@ router.get('/users', getUsers)
 router.get('/user/:id', getUser)
 
 // Artist
-router.post("/add-artis", addArtis)
-router.get("/artis", getArtiss)
-router.get("/artis/:id", getArtis)
+router.post("/add-artis", auth, addArtis)
+router.get("/artis", auth, getArtiss)
+router.get("/artis/:id", auth, getArtis)
 
 // Music
-router.post("/add-music", uploadFile("thumbnail", "attache"), addMusic);
-router.get("/musics", musics);
-router.get("/music/:id", getMusic);
+router.post("/add-music", auth, uploadFile("thumbnail", "attache"), addMusic);
+router.get("/musics", auth, musics);
+router.get("/music/:id", auth, getMusic);
 
 // Transaction
 router.get("/transactions", auth, getTransactions)

@@ -1,4 +1,5 @@
 const { music, artis } = require('../../models')
+const cloudinary = require('cloudinary')
 
 exports.addMusic = async (req, res) => {
     try {
@@ -117,70 +118,70 @@ exports.getMusic = async (req, res) => {
     }
 }
 
-exports.updateMusic = async (req, res) => {
-    try {
-        const { id } = req.params
-        const data = {
-            title: req.body.title,
-            years: req.body.years,
-            thumbnail: req.file.thumbnail,
-            attache: req.file.attache,
-            artistId: req.body.artistId
-        }
-        await music.update(data, {
-            where: { id },
-            include: [{
-                model: artist,
-                as: 'artist',
-                attributes: {
-                    exclude: ['createdAt', 'updatedAt']
-                }
-            }],
-            attributes: {
-                exclude: ['createdAt', 'updatedAt']
-            },
-        });
+// exports.updateMusic = async (req, res) => {
+//     try {
+//         const { id } = req.params
+//         const data = {
+//             title: req.body.title,
+//             years: req.body.years,
+//             thumbnail: req.file.thumbnail,
+//             attache: req.file.attache,
+//             artistId: req.body.artistId
+//         }
+//         await music.update(data, {
+//             where: { id },
+//             include: [{
+//                 model: artist,
+//                 as: 'artist',
+//                 attributes: {
+//                     exclude: ['createdAt', 'updatedAt']
+//                 }
+//             }],
+//             attributes: {
+//                 exclude: ['createdAt', 'updatedAt']
+//             },
+//         });
 
-        data = JSON.parse(JSON.stringify(data))
-        // console.log(data)
+//         data = JSON.parse(JSON.stringify(data))
+//         // console.log(data)
 
-        data = data.map((item) => {
-            return {
-                ...item,
-                thumbnail: process.env.FILE_PATH + item.thumbnail,
-                attache: process.env.FILE_PATH + item.attache
-            }
-        })
+//         data = data.map((item) => {
+//             return {
+//                 ...item,
+//                 thumbnail: process.env.FILE_PATH + item.thumbnail,
+//                 attache: process.env.FILE_PATH + item.attache
+//             }
+//         })
 
-        res.status(200).send({
-            status: "success",
-            data
-        })
-    } catch (error) {
-        console.log(error);
-        res.status(500).send({
-            status: 'failed',
-            message: 'server error'
-        })
-    }
-}
+//         res.status(200).send({
+//             status: "success",
+//             data
+//         })
+//     } catch (error) {
+//         console.log(error);
+//         res.status(500).send({
+//             status: 'failed',
+//             message: 'server error'
+//         })
+//     }
+// }
 
-exports.deleteMusic = async (req, res) => {
-    try {
-        const { id } = req.params
-        await music.destroy({
-            where: { id }
+// exports.deleteMusic = async (req, res) => {
+//     try {
+//         const { id } = req.params
+//         await music.destroy({
+//             where: { id }
 
-        })
-        res.status(200).send({
-            status: 'success',
-            message: `Delete music id = ${id} success`
-        })
-    } catch (error) {
-        console.log(error);
-        res.status(500).send({
-            status: 'failed',
-            message: 'server error'
-        })
-    }
-}
+//         })
+//         res.status(200).send({
+//             status: 'success',
+//             message: `Delete music id = ${id} success`
+//         })
+//     } catch (error) {
+//         console.log(error);
+//         res.status(500).send({
+//             status: 'failed',
+//             message: 'server error'
+//         })
+//     }
+// }
